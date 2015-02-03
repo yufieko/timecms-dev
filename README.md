@@ -8,5 +8,5 @@ proyek dari mata kuliah aplikasi dan teknologi web
 - apalagi yah ? lihat nanti :p
 
 # gunain
-- framework codeigniter
+- framework codeigniter 3.0 RC
 - template bootstrap AdminLTE 2 (alpha)
