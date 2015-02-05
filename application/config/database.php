@@ -65,11 +65,11 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'mysql:host=localhost;dbname=rescomm_db',
+	'hostname' => 'localhost',
 	'username' => 'root',
 	'password' => '',
-	'database' => 'rescomm_db',
-	'dbdriver' => 'pdo', // ayo pindah ke pdo sobbbb \o.o/
+	'database' => 'timecms',
+	'dbdriver' => 'mysql', // ayo pindah ke pdo sobbbb \o.o/
 	'dbprefix' => '',
 	'pconnect' => FALSE,
 	'db_debug' => TRUE,
