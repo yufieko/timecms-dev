@@ -14,6 +14,11 @@
 
         <!-- Main content -->
         <section class="content">
+          <!-- info selamat datang -->
+          <div class="alert alert-info alert-dismissable" style="padding:5px 35px 5px 5px; margin: 0 0 5px 0">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+              <b>Hai!</b> <?=$welcome_message;?>
+          </div>
           <!-- Info boxes -->
           <div class="row">
             <div class="col-md-3 col-sm-6 col-xs-12">
@@ -124,7 +129,7 @@
                     ?>
                     <li class="item">
                       <div class="product-img">
-                        <img src="<?=$key->post_pic;?>" alt="<?=$key->post_title;?>"/>
+                        <img src="<?=base_url() . "public/img/post/" . $key->post_pic;?>" alt="<?=$key->post_title;?>"/>
                       </div>
                       <div class="product-info">
                         <a href="javascript::;" class="product-title"><?=$key->post_title;?> 
@@ -165,7 +170,7 @@
                         foreach ($datapenulis->result() as $key) { 
                     ?>
                     <li>
-                      <img src="<?=$key->user_ava;?> " alt="User Image"/>
+                      <img src="<?=base_url() . "public/img/" .$key->user_ava;?> " alt="User Image"/>
                       <a class="users-list-name" href="#"><?=$key->user_name;?></a>
                       <span class="users-list-date"><?= date("d-m-Y", strtotime($key->user_created));?> </span>
                     </li>
@@ -223,7 +228,7 @@
         <div class="pull-right hidden-xs">
           <b>Version</b> 2.0
         </div>
-        <strong>Copyright &copy; 2014-2015 timecms template by <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong>
+        <strong>Copyright &copy; 2014-2015 timecms template by <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> Rendered in <i>{elapsed_time} sec</i>, with {memory_usage}. From <?=$this->input->ip_address();?>
       </footer>
 
     </div><!-- ./wrapper -->
@@ -233,7 +238,7 @@
 
     <script type="text/javascript">
           function refresh_jumlah(){
-              $.getJSON('<?=base_url();?>dashboard/get_databox', function(obj) {
+              $.getJSON('<?=site_url()?>/dashboard/get_databox', function(obj) {
                   $("#boxtotalpost").html(obj.boxtotalpost);
                   $("#boxtotalcomment").html(obj.boxtotalcomment);
                   $("#boxnotif").html(obj.boxnotif);

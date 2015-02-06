@@ -8,7 +8,6 @@ class Dashboard extends MY_Controller {
         parent::__construct();
         $this->load->model('user_model', '', true);
         $this->load->model('comment_model', '', true);
-        $this->load->model('data_model', '', true);
         $this->load->model('notif_model', '', true);
         $this->load->model('post_model', '', true);
     }
@@ -57,9 +56,7 @@ class Dashboard extends MY_Controller {
         $datah['title'] = 'Notifikasi';
         $datah['menu'] = $this->user_model->get_menu($this->access->get_roleid());
 
-        $id = "";
-        if($this->access->get_ukmid() == 0) { $id = $this->access->get_userid();
-        } else { $id = $this->access->get_ukmid(); }
+        $id = $this->access->get_userid();
 
         $data['datanotif'] = $this->notif_model->get_notif(array("notif_to" => $id, "notif_read !=" => 2));
 
@@ -118,11 +115,10 @@ class Dashboard extends MY_Controller {
     public function artikel() {
         $datah['title'] = 'Artikel';
         $datah['menu'] = $this->user_model->get_menu($this->access->get_roleid());
-        $data['datauser'] = $this->user_model->get_user(array("user_role" => "42"))->result();
 
         // generate view
         $this->load->view('header_view',$datah);
-        $this->load->view('ukm_view',$data);
+        $this->load->view('artikel_view');
     }
 
     public function penulis() {

@@ -10,7 +10,7 @@ class Login extends CI_Controller {
     }
 
     public function index() {
-        if(!$this->access->is_login()){
+        if(!$this->Access->is_login()){
             if($this->session->userdata('time_pesan')) {
                 $data['error'] = $this->session->userdata('time_pesan');
                 $this->session->unset_userdata('time_pesan');

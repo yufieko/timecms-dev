@@ -10,18 +10,18 @@ class User_model extends CI_Model {
 
     function get_login_info($username) {
         $query = $this->db->query('SELECT 
-            tc_user.user_id, tc_user.user_name, tc_user.user_pass, tc_user.user_role, tc_user.user_data, tc_role.role_name AS rolename
-            FROM tc_user
-            INNER JOIN tc_role ON (tc_user.user_role = tc_role.role_id)
-            WHERE tc_user.user_name = "' . $username . '" LIMIT 1');
+            49_tc_user.user_id, 49_tc_user.user_name, 49_tc_user.user_pass, 49_tc_user.user_role, 49_tc_user.user_data, 49_tc_role.role_name AS rolename
+            FROM 49_tc_user
+            INNER JOIN 49_tc_role ON (49_tc_user.user_role = 49_tc_role.role_id)
+            WHERE 49_tc_user.user_name = "' . $username . '" LIMIT 1');
         return ($query->num_rows() > 0) ? $query->row() : FALSE;
     }
 
     function get_menu($role) {
-    		$sql = 'SELECT tc_usermenu.* FROM tc_userakses INNER JOIN tc_usermenu
-    				ON (tc_userakses.akses_menu = tc_usermenu.akses_menu) WHERE
-    				tc_userakses.role_id="'.$role.'" AND tc_usermenu.menu_tipe="0"
-    				ORDER BY tc_usermenu.menu_urutan';
+    		$sql = 'SELECT 49_tc_usermenu.* FROM 49_tc_userakses INNER JOIN 49_tc_usermenu
+    				ON (49_tc_userakses.akses_menu = 49_tc_usermenu.akses_menu) WHERE
+    				49_tc_userakses.role_id="'.$role.'" AND 49_tc_usermenu.menu_tipe="0" AND 49_tc_usermenu.menu_aktif="1"
+    				ORDER BY 49_tc_usermenu.menu_urutan';
     		$result = $this->db->query($sql);
 
     		$menu = '';
@@ -31,24 +31,24 @@ class User_model extends CI_Model {
     			foreach ($result->result() as $parent){
     				$li_parent='';
 
-    				$sql = 'SELECT tc_usermenu.* FROM tc_userakses INNER JOIN tc_usermenu
-    						ON (tc_userakses.akses_menu = tc_usermenu.akses_menu) WHERE
-    						tc_userakses.role_id="'.$role.'" AND tc_usermenu.menu_tipe="1" AND tc_usermenu.menu_parent="'.$parent->akses_menu.' "
-    						ORDER BY tc_usermenu.menu_urutan';
+    				$sql = 'SELECT 49_tc_usermenu.* FROM 49_tc_userakses INNER JOIN 49_tc_usermenu
+    						ON (49_tc_userakses.akses_menu = 49_tc_usermenu.akses_menu) WHERE
+    						49_tc_userakses.role_id="'.$role.'" AND 49_tc_usermenu.menu_tipe="1" AND 49_tc_usermenu.menu_aktif="1" AND 49_tc_usermenu.menu_parent="'.$parent->akses_menu.' "
+    						ORDER BY 49_tc_usermenu.menu_urutan';
 
                     $result_child=$this->db->query($sql);
     				if($result_child->num_rows()>0){
     				    $li_parent='class="treeview"';
     					$menu_child='<ul class="treeview-menu">';
     					foreach ($result_child->result() as $child){
-    						$menu_child = $menu_child.'<li><a href="'.site_url()."dashboard".$child->menu_url.'"><i class="'.$child->menu_icon.'"></i> '.$child->menu_nama.'</a></li>';
+    						$menu_child = $menu_child.'<li><a href="'.site_url()."/dashboard".$child->menu_url.'"><i class="'.$child->menu_icon.'"></i> '.$child->menu_nama.'</a></li>';
     					}
     					$menu_child = $menu_child.'</ul>';
     				}
 
     				$menu = $menu.'
                                 <li '.$li_parent.' id="li-'.$parent->akses_menu.'">
-                                    <a href="'.site_url()."dashboard".$parent->menu_url.'">
+                                    <a href="'.site_url()."/dashboard".$parent->menu_url.'">
                                         <i class="'.$parent->menu_icon.'"></i> <span>'.$parent->menu_nama.'</span>
                                         '.$menu_child.'
                                     </a>
@@ -62,13 +62,13 @@ class User_model extends CI_Model {
     function get_total($parameter) {
         if(!empty($parameter)){
             $this->db->select('count(*) AS Total');
-            $this->db->from('tc_user');
+            $this->db->from('49_tc_user');
             $this->db->where($parameter);
             $query = $this->db->get();
             return (count($query->row_array()) > 0 ? $query->row()->Total : 0);
         }else{
             $this->db->select('count(*) AS Total');
-            $this->db->from('tc_user');
+            $this->db->from('49_tc_user');
             $query = $this->db->get();
             return (count($query->row_array()) > 0 ? $query->row()->Total : 0);
         }
@@ -76,31 +76,31 @@ class User_model extends CI_Model {
 
     function get_role() {
         $this->db->select('*');
-        $this->db->from('role');
+        $this->db->from('49_49_tc_role');
         $query = $this->db->get();
         return (count($query->num_rows()) > 0 ? $query->result() : NULL);
     }
 
     function cek($parameter) {
         $this->db->select('*');
-        $this->db->from('tc_user');
+        $this->db->from('49_tc_user');
         $this->db->where($parameter);
         $query = $this->db->get();
         return $query;
     }
 
     function insert($data) {
-        $this->db->insert('tc_user', $data);
+        $this->db->insert('49_tc_user', $data);
     }
 
     function delete($id) {
         $this->db->where('user_id', $id);
-        $this->db->delete('tc_user');
+        $this->db->delete('49_tc_user');
     }
 
     function reset($data) {
         $this->db->select('*');
-        $this->db->from('tc_user');
+        $this->db->from('49_tc_user');
         $this->db->where($data);
         $query = $this->db->get();
         return (count($query->row_array()) > 0 ? $query : NULL);;
@@ -108,13 +108,13 @@ class User_model extends CI_Model {
 
     function update($id, $data) {
         $this->db->where('user_id', $id);
-        $this->db->update('tc_user', $data);
+        $this->db->update('49_tc_user', $data);
     }
 
     function select($data, $no) {
-        $this->db->select('tc_user.*, tc_role.role_name AS Role');
-        $this->db->from('tc_user');
-        $this->db->join('tc_role', 'tc_user.user_role = tc_role.role_id');
+        $this->db->select('49_tc_user.*, 49_tc_role.role_name AS Role');
+        $this->db->from('49_tc_user');
+        $this->db->join('49_tc_role', '49_tc_user.user_role = 49_tc_role.role_id');
         $this->db->where($data);
         $this->db->limit($no);
         $query = $this->db->get();
@@ -122,18 +122,18 @@ class User_model extends CI_Model {
     }
     
     function get_user($parameter) {
-        $this->db->select('tc_user.*, tc_role.role_name AS Role');
-        $this->db->from('tc_user');
-        $this->db->join('tc_role', 'tc_user.user_role = tc_role.role_id');
+        $this->db->select('49_tc_user.*, 49_tc_role.role_name AS Role');
+        $this->db->from('49_tc_user');
+        $this->db->join('49_tc_role', '49_tc_user.user_role = 49_tc_role.role_id');
         $this->db->where($parameter);
         $query = $this->db->get();
         return (count($query->num_rows()) > 0 ? $query : NULL);
     }
 
     function get_userakses($parameter) {
-        $this->db->select('user_akses.*, role.role_name AS Role');
-        $this->db->from('user_akses');
-        $this->db->join('role', 'user_akses.role_id = role.role_id');
+        $this->db->select('49_tc_userakses.*, 49_tc_role.role_name AS Role');
+        $this->db->from('49_tc_user_akses');
+        $this->db->join('role', '49_tc_userakses.role_id = 49_tc_role.role_id');
         $this->db->where($parameter);
         $query = $this->db->get();
         return (count($query->num_rows()) > 0 ? $query : NULL);

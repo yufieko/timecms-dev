@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>timecms // login</title>
+    <title>login // timecms</title>
     <link rel="shortcut icon" href="<?= base_url(); ?>public/img/avatar_144bf176a04f_128.png">
     <link rel="apple-touch-icon-precomposed" href="<?= base_url(); ?>public/img/avatar_144bf176a04f_128.png">
 
@@ -21,7 +21,7 @@
 
     <style type="text/css">
         .login-page.login-light {
-            background: url(<?= base_url();?>public/img/blur-background09.jpg) repeat center center fixed;
+            background: url(<?= base_url();?>public/img/blur-background08.jpg) repeat center center fixed;
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
@@ -73,7 +73,7 @@
                                 {
                                     show_loading_bar(70); // Fill progress bar to 70% (just a given value)
                                     $.ajax({
-                                        url: "<?=base_url()?>login/dologin",
+                                        url: "<?=site_url()?>/login/dologin",
                                         method: 'POST',
                                         dataType: 'json',
                                         data:$('#login').serialize(),
@@ -86,7 +86,7 @@
                                                     // Redirect after successful login page (when progress bar reaches 100%)
                                                     if(resp.accessGranted == 1)
                                                     {
-                                                        window.location.href = '<?=base_url()?>dashboard';
+                                                        window.location.href = '<?=site_url()?>/dashboard';
                                                     }
                                                 }
                                             });

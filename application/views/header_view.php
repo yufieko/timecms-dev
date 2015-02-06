@@ -14,7 +14,7 @@
     <!-- Morris chart -->
     <link href="<?=base_url();?>public/js/plugins/morris/morris.css" rel="stylesheet" type="text/css" />
     <!-- Daterange picker -->
-    <link href="<?=base_url();?>public/js/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
+    <link href="<?=base_url();?>public/js/plugins/datepicker/datepicker3.css" rel="stylesheet" type="text/css" />
     <!-- iCheck for checkboxes and radio inputs -->
     <link href="<?=base_url();?>public/js/plugins/iCheck/all.css" rel="stylesheet" type="text/css" />
     <!-- Bootstrap Color Picker -->
@@ -23,6 +23,8 @@
     <link href="<?=base_url();?>public/js/plugins/timepicker/bootstrap-timepicker.min.css" rel="stylesheet"/>
     <!-- DATA TABLES -->
     <link href="<?=base_url();?>public/js/plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
+    <!-- bootstrap wysihtml5 - text editor -->
+    <link href="<?=base_url();?>public/js/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
     <!-- jvectormap -->
     <link href="<?=base_url();?>public/js/plugins/jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
     <!-- Theme style -->
@@ -39,6 +41,7 @@
     <!-- DATA TABES SCRIPT -->
     <script src="<?=base_url();?>public/js/plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>
     <script src="<?=base_url();?>public/js/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
+    <script src="<?=base_url();?>public/js/plugins/datatables/dataTables.reload.js" type="text/javascript"></script>
     <!-- InputMask -->
     <script src="<?=base_url();?>public/js/plugins/input-mask/jquery.inputmask.js" type="text/javascript"></script>
     <script src="<?=base_url();?>public/js/plugins/input-mask/jquery.inputmask.date.extensions.js" type="text/javascript"></script>
@@ -123,10 +126,10 @@
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
                                     <div class="pull-left">
-                                        <a href="<?=base_url();?>dashboard/profil" class="btn btn-default btn-flat">Profil</a>
+                                        <a href="<?=site_url()?>/dashboard/profil" class="btn btn-default btn-flat">Profil</a>
                                     </div>
                                     <div class="pull-right">
-                                        <a href="<?=base_url();?>dashboard/logout" class="btn btn-default btn-flat">Keluar</a>
+                                        <a href="<?=site_url()?>/dashboard/logout" class="btn btn-default btn-flat">Keluar</a>
                                     </div>
                                 </li>
                             </ul>
@@ -164,7 +167,7 @@
                 <ul class="sidebar-menu">
                     <li class="header">MAIN NAVIGATION</li>
                     <li id="li-dashboard">
-                        <a href="<?=base_url();?>dashboard">
+                        <a href="<?=site_url()?>/dashboard">
                             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                         </a>
                     </li>
